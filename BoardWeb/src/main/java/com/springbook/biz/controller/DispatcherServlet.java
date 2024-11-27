@@ -134,6 +134,43 @@ public class DispatcherServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("boardList", boardList);
 			response.sendRedirect("getBoardList.jsp");
+		}else if(path.equals("/insertUser.do")) {
+			System.out.println("회원가입");
+			
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String password1 = request.getParameter("password2");
+			String name = request.getParameter("name");
+			//String role = request.getParameter("role");
+			String role = "USER";
+			
+		   if (!password.equals(password1)) {
+		        request.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
+		        request.setAttribute("id", id);
+		        request.setAttribute("name", name);
+		        request.getRequestDispatcher("insertUser.jsp").forward(request, response);
+
+		        return;
+		    }
+
+			UserVO vo = new UserVO();
+			UserDAO userDAO = new UserDAO();
+
+			vo.setId(id);
+			vo.setPassword(password);
+			vo.setName(name);
+			vo.setRole(role);
+
+			if(password.equals(password1)){
+				response.sendRedirect("login.jsp");
+			}else{
+				response.sendRedirect("insertUser.jsp");
+			}
+
+			userDAO.insertUser(vo);
+
+
+			
 		}
 
 	}
