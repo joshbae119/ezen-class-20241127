@@ -9,7 +9,7 @@
 <body>
 <center>
 <h1>글 등록</h1>
-<a href="logout_proc.jsp">로그아웃</a>
+<a href="logout.do">로그아웃</a>
 <hr>
 <form action="insertBoard.do" method="post">
 <table border="1" cellpadding="0" cellspacing="0">
