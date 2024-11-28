@@ -17,7 +17,7 @@
 
 <center>
 <h1>글 상세</h1>
-<a href=logout.do">로그아웃</a>
+<a href="logout.do">로그아웃</a>
 <hr>
 
 <form action="updateBoard.do" method="post">
