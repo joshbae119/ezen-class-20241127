@@ -3,13 +3,16 @@ package com.springbook.biz.controller.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-import com.springbook.biz.controller.Controller;
+
 
 public class DeleteBoardController implements Controller{
 	
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("글 삭제 처리");
 		
 		String seq = request.getParameter("seq");
@@ -20,7 +23,10 @@ public class DeleteBoardController implements Controller{
 		BoardDAO boardDAO = new BoardDAO();
 		boardDAO.deleteBoard(vo);
 
-		return "getBoardList.do";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("getBoardList.do");
+		return mav;
+
 		
 	}
 
